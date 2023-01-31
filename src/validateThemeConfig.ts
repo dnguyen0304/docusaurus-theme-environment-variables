@@ -5,6 +5,12 @@ import type {
 } from '@docusaurus/types';
 import { Joi } from '@docusaurus/utils-validation';
 
+declare module '@docusaurus/types' {
+    interface ThemeConfig {
+        docupotamusEnvironmentVariables: EnvironmentVariablesThemeConfig;
+    }
+};
+
 const DEFAULT_THEME_CONFIG: EnvironmentVariablesThemeConfig = {
     swizzleIsEnabled: true,
 };
