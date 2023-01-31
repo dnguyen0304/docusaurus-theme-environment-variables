@@ -1,3 +1,6 @@
+// Warning: This module was ejected. Do not fix or format, and minimize changes
+// to facilitate diffing.
+
 import React from 'react';
 import clsx from 'clsx';
 import {useThemeConfig, usePrismTheme} from '@docusaurus/theme-common';
