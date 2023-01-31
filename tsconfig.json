@@ -32,6 +32,7 @@
         "baseUrl": ".",
         "types": [
             "node",
+            "@docusaurus/module-type-aliases",
         ],
         /* Plugins */
         "plugins": [
