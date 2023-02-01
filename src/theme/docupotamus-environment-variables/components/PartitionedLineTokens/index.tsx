@@ -1,6 +1,7 @@
 import type { Props as LineProps } from '@theme/CodeBlock/Line';
 import * as React from 'react';
 
+const TARGET_CLASS_NAME = 'DocupotamusEnvironmentVariable-container';
 // TODO(dnguyen0304): Refactor to RegExp and String.raw to reduce duplicated
 //   code.
 //   See: https://stackoverflow.com/a/43391072
@@ -102,7 +103,7 @@ export default function PartitionedLines(
             // Flush the temporary line tokens.
             lineTokens.push(
                 <span
-                    className='DocupotamusEnvironmentVariable-container'
+                    className={TARGET_CLASS_NAME}
                     data-environment-variable-name={currPartition.name}
                 >
                     {temp}
