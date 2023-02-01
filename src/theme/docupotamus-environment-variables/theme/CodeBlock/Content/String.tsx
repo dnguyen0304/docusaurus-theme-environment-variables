@@ -1,7 +1,7 @@
 // Warning: This module was ejected. Do not fix or format, and minimize changes
 // to facilitate diffing.
 
-import PartitionedLines from './PartitionedLines';
+import PartitionedLines from '../../../components/PartitionedLines';
 
 import React from 'react';
 import clsx from 'clsx';
