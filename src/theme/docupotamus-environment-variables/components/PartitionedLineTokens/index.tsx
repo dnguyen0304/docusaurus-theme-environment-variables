@@ -51,20 +51,50 @@ export default function PartitionedLines(
         getTokenProps,
     }: Props,
 ): JSX.Element {
-    const partitions = getPartitions(line);
     const lineTokens: JSX.Element[] = [];
-    const temp: PrismToken[] = [];
+    const partitions = getPartitions(line);
 
+    let temp: JSX.Element[] = [];
     let currCharacterIndex = 0;
-    let currPartition = partitions[0];
+    let currPartitionIndex = 0;
 
     line.forEach((token, key) => {
-        // if (currCharacterIndex === currPartitionIndex) {
-        //     temp.push(token);
-        //     return;
-        // }
         const lineToken = <span key={key} {...getTokenProps({ token, key })} />;
-        lineTokens.push(lineToken);
+        const currPartition = partitions[currPartitionIndex];
+        if (!currPartition) {
+            // Add all remaining line tokens without changes.
+            lineTokens.push(lineToken);
+            return;
+        }
+
+        const isBeforeStart = currCharacterIndex < currPartition.start;
+        const isAfterStart = currCharacterIndex >= currPartition.start;
+        const isBeforeEnd = currCharacterIndex < currPartition.end;
+        const isAfterEnd = currCharacterIndex > currPartition.end;
+
+        const isOutside = isBeforeStart || isAfterEnd;
+        const isBetween = isAfterStart && isBeforeEnd;
+        const isImmediatelyAfterEnd = currCharacterIndex === currPartition.end;
+
+        if (isOutside) {
+            lineTokens.push(lineToken);
+        } else if (isBetween) {
+            temp.push(lineToken);
+        } else if (isImmediatelyAfterEnd) {
+            // Flush the temporary line tokens.
+            lineTokens.push(
+                <span
+                    className='DocupotamusEnvironmentVariable-container'
+                    data-environment-variable-name={currPartition.name}
+                >
+                    {temp}
+                </span>
+            );
+            temp = [];
+            currPartitionIndex += 1;
+            // Process the current line token.
+            lineTokens.push(lineToken);
+        }
         currCharacterIndex += token.content.length;
     });
 
