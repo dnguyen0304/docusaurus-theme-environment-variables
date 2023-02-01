@@ -17,12 +17,15 @@ interface Entry {
 export default function WorkbenchTab(): JSX.Element {
     const [entries, setEntries] = React.useState<Entry[]>([]);
 
+    const toggleHighlight = (entry: Entry) => {
+        const className = styles['target--highlight'];
+        if (className) {
+            entry.element.classList.toggle(className);
+        }
+    };
+
     //     const handleBlur = (selector: string) => {
     //         document.querySelector(selector)!.classList.remove('highlight');
-    //     };
-
-    //     const handleFocus = (selector: string) => {
-    //         document.querySelector(selector)!.classList.add('highlight');
     //     };
 
     //     const handleChange = (
@@ -80,13 +83,13 @@ export default function WorkbenchTab(): JSX.Element {
                         <li key={`${KEY_PREFIX}-${entry.key}`}>
                             <TextField
                                 label={entry.key}
-                                //   onBlur={() => handleBlur(entry.selector)}
+                                onBlur={() => toggleHighlight(entry)}
                                 //   onChange={event => handleChange(
                                 //       event,
                                 //       index,
                                 //       entry.selector,
                                 //   )}
-                                //   onFocus={() => handleFocus(entry.selector)}
+                                onFocus={() => toggleHighlight(entry)}
                                 value={''}
                                 variant='outlined'
                                 fullWidth

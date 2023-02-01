@@ -9,6 +9,12 @@
     margin-top: var(--space-s);
 }
 
+.target--highlight {
+    background-color: rgb(252, 201, 53);
+    border-radius: 6px;
+    padding: 1% 0;
+}
+
 /* 
 font-weight: var(--docupotamus-heading-font-weight);
 
