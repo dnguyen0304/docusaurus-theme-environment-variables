@@ -19,6 +19,11 @@ interface Entry {
     readonly element: HTMLElement;
 };
 
+const toString = (entry: Entry): string => {
+    const defaultValue = entry.defaultValue ? `=${entry.defaultValue}` : '';
+    return `{{ ${entry.key}${defaultValue} }}`;
+};
+
 export default function WorkbenchTab(): JSX.Element {
     const [entries, setEntries] = React.useState<Entry[]>([]);
 
@@ -39,7 +44,6 @@ export default function WorkbenchTab(): JSX.Element {
     const handleChange = (
         event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
         changeIndex: number,
-        // selector: string,
     ) => {
         setEntries(entries => entries.map((entry, index) => {
             if (index !== changeIndex) {
@@ -50,6 +54,10 @@ export default function WorkbenchTab(): JSX.Element {
                 currValue: event.target.value,
             };
         }));
+        // const entry = entries[changeIndex];
+        // if (!entry) {
+        //     return;
+        // }
 
         // document.querySelector(selector)!.innerHTML = event.target.value + ' ';
     };
@@ -68,12 +76,14 @@ export default function WorkbenchTab(): JSX.Element {
             if (defaultValue === undefined) {
                 return;
             }
-            newEntries.push({
+            const entry = {
                 key,
                 defaultValue,
                 currValue: defaultValue,
                 element,
-            });
+            };
+            element.replaceChildren(toString(entry));
+            newEntries.push(entry);
         });
         setEntries(newEntries);
     }, []);
