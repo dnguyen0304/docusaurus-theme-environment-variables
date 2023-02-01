@@ -1,9 +1,9 @@
 import Box from '@mui/material/Box';
 // import TextField from '@mui/material/TextField';
 import * as React from 'react';
-import { DATA_ATTRIBUTE, TARGET_CLASS_NAME } from '../PartitionedLineTokens';
-// import styles from './styles.module.css';
 import '../../styles.css';
+import { DATA_ATTRIBUTE, TARGET_CLASS_NAME } from '../PartitionedLineTokens';
+import styles from './styles.module.css';
 
 // const KEY_PREFIX = 'environmentVariable';
 
@@ -74,13 +74,9 @@ export default function WorkbenchTab(): JSX.Element {
             >
                 Environment Variables
             </h3>
-            {/* //             <ul
-//                 className={
-//                     `${styles['UnorderedList-container--unstyled']} `
-//                     + `${styles['Environment-unorderedList']}`
-//                 }
-//             >
-//                 {entries.map((entry, index, array) => {
+            <ul className={styles['ul-container']}>
+                <li>hello world</li>
+                {/* //                 {entries.map((entry, index, array) => {
 //                     return (
 //                         <li
 //                             key={`${KEY_PREFIX}-${index}`}
@@ -105,8 +101,8 @@ export default function WorkbenchTab(): JSX.Element {
 //                             />
 //                         </li>
 //                     );
-//                 })}
-//             </ul> */}
+//                 })} */}
+            </ul>
         </Box>
     );
 };
