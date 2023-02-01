@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import * as React from 'react';
 import '../../styles.css';
 import {
+    DATA_ATTRIBUTE_DEFAULT_VALUE,
     DATA_ATTRIBUTE_NAME,
     TARGET_CLASS_NAME
 } from '../PartitionedLineTokens';
@@ -10,10 +11,10 @@ import styles from './styles.module.css';
 
 const KEY_PREFIX = 'environmentVariable';
 
-// TODO(dnguyen0304): Support defaultValue property.
 // TODO(dnguyen0304): Support isRequired property.
 interface Entry {
     readonly key: string;
+    readonly defaultValue: string;
     readonly element: HTMLElement;
 };
 
@@ -63,11 +64,16 @@ export default function WorkbenchTab(): JSX.Element {
                 return;
             }
             const key = element.dataset[DATA_ATTRIBUTE_NAME];
-            if (!key) {
+            if (key === undefined) {
+                return;
+            }
+            const defaultValue = element.dataset[DATA_ATTRIBUTE_DEFAULT_VALUE];
+            if (defaultValue === undefined) {
                 return;
             }
             newEntries.push({
                 key,
+                defaultValue,
                 element,
             });
         });
