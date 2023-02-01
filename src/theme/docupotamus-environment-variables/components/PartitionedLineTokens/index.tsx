@@ -3,7 +3,8 @@ import * as React from 'react';
 
 const REGEX = /\{\{\s\S+\s\}\}/g;
 
-const getPartitionIndices = (text: string): number[] => {
+const getPartitionIndices = (line: PrismToken[]): number[] => {
+    const text = line.map(token => token.content).join('');
     const matches = [
         // See: https://github.com/microsoft/TypeScript/issues/36788
         ...text.matchAll(REGEX) as IterableIterator<RegExpExecArray>,
@@ -41,7 +42,7 @@ export default function PartitionedLines(
         getTokenProps,
     }: Props,
 ): JSX.Element {
-    // const partitionIndices = getPartitionIndices(line);
+    const partitionIndices = getPartitionIndices(line);
     const lineTokens: JSX.Element[] = [];
 
     line.forEach((token, key) => {
