@@ -14,6 +14,7 @@ interface Partition {
     readonly start: number;
     readonly end: number;
     readonly name: string;
+    readonly defaultValue: string;
 };
 
 // TODO(dnguyen0304): Investigate refactoring to a generator function.
@@ -43,10 +44,17 @@ const getPartitions = (line: PrismToken[]): Partition[] => {
     ];
     const partitions: Partition[] = [];
     matches.forEach(match => {
+        const value = match[0].slice(3, -3);
+        // TODO(dnguyen0304): Add validation.
+        const [name, defaultValue] =
+            (value.includes('='))
+                ? value.split('=') as [string, string]
+                : [value, ''];
         partitions.push({
             start: match.index,
             end: match.index + match[0].length,
-            name: match[0].slice(3, -3),
+            name,
+            defaultValue,
         });
     });
     return partitions;
