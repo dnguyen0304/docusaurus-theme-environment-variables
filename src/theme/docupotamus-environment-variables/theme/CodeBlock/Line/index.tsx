@@ -1,6 +1,8 @@
 // Warning: This module was ejected. Do not fix or format, and minimize changes
 // to facilitate diffing.
 
+import PartitionedLineTokens from '../../../components/PartitionedLineTokens';
+
 import React from 'react';
 import clsx from 'clsx';
 import type {Props} from '@theme/CodeBlock/Line';
@@ -23,9 +25,12 @@ export default function CodeBlockLine({
     className: clsx(classNames, showLineNumbers && styles.codeLine),
   });
 
-  const lineTokens = line.map((token, key) => (
-    <span key={key} {...getTokenProps({token, key})} />
-  ));
+  const lineTokens = (
+    <PartitionedLineTokens
+        line={line}
+        getTokenProps={getTokenProps}
+    />
+  );
 
   return (
     <span {...lineProps}>
