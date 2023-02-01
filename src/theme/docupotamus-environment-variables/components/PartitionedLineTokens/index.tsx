@@ -2,7 +2,8 @@ import type { Props as LineProps } from '@theme/CodeBlock/Line';
 import * as React from 'react';
 
 export const TARGET_CLASS_NAME = 'DocupotamusEnvironmentVariable-container';
-export const DATA_ATTRIBUTE = 'environmentVariableName';
+export const DATA_ATTRIBUTE_NAME = 'environmentVariableName';
+export const DATA_ATTRIBUTE_DEFAULT_VALUE = 'environmentVariableDefaultValue';
 // TODO(dnguyen0304): Refactor to RegExp and String.raw to reduce duplicated
 //   code.
 //   See: https://stackoverflow.com/a/43391072
@@ -114,6 +115,9 @@ export default function PartitionedLines(
                 <span
                     className={TARGET_CLASS_NAME}
                     data-environment-variable-name={currPartition.key}
+                    data-environment-variable-default-value={
+                        currPartition.defaultValue
+                    }
                 >
                     {temp}
                 </span>
