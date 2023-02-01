@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-// import TextField from '@mui/material/TextField';
+import TextField from '@mui/material/TextField';
 import * as React from 'react';
 import '../../styles.css';
 import { DATA_ATTRIBUTE, TARGET_CLASS_NAME } from '../PartitionedLineTokens';
@@ -78,21 +78,20 @@ export default function WorkbenchTab(): JSX.Element {
                 {entries.map((entry) => {
                     return (
                         <li key={`${KEY_PREFIX}-${entry.key}`}>
-                            {entry.key}
-                            {/* <TextField
-                                //  label={entry.key}
-                                //  onBlur={() => handleBlur(entry.selector)}
-                                //  onChange={event => handleChange(
-                                //      event,
-                                //      index,
-                                //      entry.selector,
-                                //  )}
-                                //  onFocus={() => handleFocus(entry.selector)}
-                                 // required={entry.isRequired}
-                                 // value={entry.value}
-                                //  variant='outlined'
-                                //  fullWidth
-                            //  /> */}
+                            <TextField
+                                label={entry.key}
+                                //   onBlur={() => handleBlur(entry.selector)}
+                                //   onChange={event => handleChange(
+                                //       event,
+                                //       index,
+                                //       entry.selector,
+                                //   )}
+                                //   onFocus={() => handleFocus(entry.selector)}
+                                //  required={entry.isRequired}
+                                value={''}
+                                variant='outlined'
+                                fullWidth
+                            />
                         </li>
                     );
                 })}
