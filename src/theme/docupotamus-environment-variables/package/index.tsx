@@ -2,8 +2,6 @@
 // public. Other symbols are considered private and _unsafe_ to be imported.
 // Their APIs are unstable and breaking changes might occur.
 
-import Line from '../theme/CodeBlock/Line';
-
-export {
-    Line,
-};
+export { TARGET_CLASS_NAME } from '../components/PartitionedLineTokens';
+export { default as WorkbenchTab } from '../components/WorkbenchTab';
+export { default as Line } from '../theme/CodeBlock/Line';
