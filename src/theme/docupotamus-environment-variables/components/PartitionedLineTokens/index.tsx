@@ -1,7 +1,7 @@
 import type { Props as LineProps } from '@theme/CodeBlock/Line';
 import * as React from 'react';
 
-export const TARGET_CLASS_NAME = 'DocupotamusEnvironmentVariable-container';
+const TARGET_CLASS_NAME = 'DocupotamusEnvironmentVariable-container';
 // TODO(dnguyen0304): Refactor to RegExp and String.raw to reduce duplicated
 //   code.
 //   See: https://stackoverflow.com/a/43391072
