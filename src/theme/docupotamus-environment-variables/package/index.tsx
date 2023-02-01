@@ -2,8 +2,8 @@
 // public. Other symbols are considered private and _unsafe_ to be imported.
 // Their APIs are unstable and breaking changes might occur.
 
-import String from '../theme/CodeBlock/Content/String';
+import Line from '../theme/CodeBlock/Line';
 
 export {
-    String,
+    Line,
 };
