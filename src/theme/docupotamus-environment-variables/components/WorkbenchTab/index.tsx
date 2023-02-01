@@ -17,10 +17,17 @@ interface Entry {
 export default function WorkbenchTab(): JSX.Element {
     const [entries, setEntries] = React.useState<Entry[]>([]);
 
-    const toggleHighlight = (entry: Entry) => {
+    const enableHighlight = (entry: Entry) => {
         const className = styles['target--highlight'];
         if (className) {
-            entry.element.classList.toggle(className);
+            entry.element.classList.add(className);
+        }
+    };
+
+    const disableHighlight = (entry: Entry) => {
+        const className = styles['target--highlight'];
+        if (className) {
+            entry.element.classList.remove(className);
         }
     };
 
@@ -83,13 +90,15 @@ export default function WorkbenchTab(): JSX.Element {
                         <li key={`${KEY_PREFIX}-${entry.key}`}>
                             <TextField
                                 label={entry.key}
-                                onBlur={() => toggleHighlight(entry)}
+                                onBlur={() => disableHighlight(entry)}
                                 //   onChange={event => handleChange(
                                 //       event,
                                 //       index,
                                 //       entry.selector,
                                 //   )}
-                                onFocus={() => toggleHighlight(entry)}
+                                onFocus={() => enableHighlight(entry)}
+                                onMouseEnter={() => enableHighlight(entry)}
+                                onMouseLeave={() => disableHighlight(entry)}
                                 value={''}
                                 variant='outlined'
                                 fullWidth
