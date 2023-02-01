@@ -5,6 +5,10 @@
     padding-bottom: 0;
 }
 
+.ul-container > li + li {
+    margin-top: var(--space-s);
+}
+
 /* 
 font-weight: var(--docupotamus-heading-font-weight);
 
@@ -13,17 +17,6 @@ letterSpacing: '4px',
 lineHeight: '1.2',
 textAlign: 'center',
 textTransform: 'uppercase',
-*/
-
-/* .EnvironmentVariables-listItem {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.EnvironmentVariables-listItem--margin {
-    margin-bottom: 20px;
-}
 
 .EnvironmentVariables-listItemButton {
     color: red;

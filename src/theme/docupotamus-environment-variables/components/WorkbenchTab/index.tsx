@@ -5,7 +5,7 @@ import '../../styles.css';
 import { DATA_ATTRIBUTE, TARGET_CLASS_NAME } from '../PartitionedLineTokens';
 import styles from './styles.module.css';
 
-// const KEY_PREFIX = 'environmentVariable';
+const KEY_PREFIX = 'environmentVariable';
 
 // TODO(dnguyen0304): Support defaultValue property.
 // TODO(dnguyen0304): Support isRequired property.
@@ -75,33 +75,27 @@ export default function WorkbenchTab(): JSX.Element {
                 Environment Variables
             </h3>
             <ul className={styles['ul-container']}>
-                <li>hello world</li>
-                {/* //                 {entries.map((entry, index, array) => {
-//                     return (
-//                         <li
-//                             key={`${KEY_PREFIX}-${index}`}
-//                             className={
-//                                 `${styles['Environment-listItem']} `
-//                                 + `${styles['Environment-listItem--margin']}`
-//                             }
-//                         >
-//                             <TextField
-//                                 label={entry.key}
-//                                 onBlur={() => handleBlur(entry.selector)}
-//                                 onChange={event => handleChange(
-//                                     event,
-//                                     index,
-//                                     entry.selector,
-//                                 )}
-//                                 onFocus={() => handleFocus(entry.selector)}
-//                                 // required={entry.isRequired}
-//                                 // value={entry.value}
-//                                 variant='outlined'
-//                                 fullWidth
-//                             />
-//                         </li>
-//                     );
-//                 })} */}
+                {entries.map((entry) => {
+                    return (
+                        <li key={`${KEY_PREFIX}-${entry.key}`}>
+                            {entry.key}
+                            {/* <TextField
+                                //  label={entry.key}
+                                //  onBlur={() => handleBlur(entry.selector)}
+                                //  onChange={event => handleChange(
+                                //      event,
+                                //      index,
+                                //      entry.selector,
+                                //  )}
+                                //  onFocus={() => handleFocus(entry.selector)}
+                                 // required={entry.isRequired}
+                                 // value={entry.value}
+                                //  variant='outlined'
+                                //  fullWidth
+                            //  /> */}
+                        </li>
+                    );
+                })}
             </ul>
         </Box>
     );
