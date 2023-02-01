@@ -1,6 +1,8 @@
 // Warning: This module was ejected. Do not fix or format, and minimize changes
 // to facilitate diffing.
 
+import PartitionedLines from './PartitionedLines';
+
 import React from 'react';
 import clsx from 'clsx';
 import {useThemeConfig, usePrismTheme} from '@docusaurus/theme-common';
@@ -76,16 +78,14 @@ export default function CodeBlockString({
                   styles.codeBlockLines,
                   showLineNumbers && styles.codeBlockLinesWithNumbering,
                 )}>
-                {tokens.map((line, i) => (
-                  <Line
-                    key={i}
-                    line={line}
+                  <PartitionedLines
+                    code={code}
+                    tokens={tokens}
                     getLineProps={getLineProps}
                     getTokenProps={getTokenProps}
-                    classNames={lineClassNames[i]}
                     showLineNumbers={showLineNumbers}
+                    lineClassNames={lineClassNames}
                   />
-                ))}
               </code>
             </pre>
           )}
