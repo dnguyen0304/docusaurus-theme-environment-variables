@@ -89,6 +89,7 @@ export default function WorkbenchTab(): JSX.Element {
                     return (
                         <li key={`${KEY_PREFIX}-${entry.key}`}>
                             <TextField
+                                autoComplete='off'
                                 label={entry.key}
                                 onBlur={() => disableHighlight(entry)}
                                 //   onChange={event => handleChange(
