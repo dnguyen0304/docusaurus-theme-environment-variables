@@ -1,12 +1,36 @@
 import type { Props as LineProps } from '@theme/CodeBlock/Line';
 import * as React from 'react';
 
+// TODO(dnguyen0304): Refactor to RegExp and String.raw to reduce duplicated
+//   code.
+//   See: https://stackoverflow.com/a/43391072
 const REGEX = /\{\{\s\S+\s\}\}/g;
+// See: https://stackoverflow.com/a/25221523
+const REGEX_SPLIT = /(\{\{\s\S+\s\}\})/g;
 
 interface Partition {
     readonly start: number;
     readonly end: number;
     readonly name: string;
+};
+
+// TODO(dnguyen0304): Investigate refactoring to a generator function.
+const splitPlainTokens = (line: PrismToken[]): PrismToken[] => {
+    const tokens: PrismToken[] = [];
+    line.forEach(token => {
+        if (token.types[0] === 'plain') {
+            const contentChunks = token.content.split(REGEX_SPLIT);
+            contentChunks.forEach(contentChunk => {
+                tokens.push({
+                    ...token,
+                    content: contentChunk,
+                });
+            });
+        } else {
+            tokens.push(token);
+        }
+    });
+    return tokens;
 };
 
 const getPartitions = (line: PrismToken[]): Partition[] => {
@@ -45,13 +69,14 @@ export default function PartitionedLines(
     }: Props,
 ): JSX.Element {
     const lineTokens: JSX.Element[] = [];
-    const partitions = getPartitions(line);
+    const tokens = splitPlainTokens(line);
+    const partitions = getPartitions(tokens);
 
     let temp: JSX.Element[] = [];
     let currCharacterIndex = 0;
     let currPartitionIndex = 0;
 
-    line.forEach((token, key) => {
+    tokens.forEach((token, key) => {
         const lineToken = <span key={key} {...getTokenProps({ token, key })} />;
         const currPartition = partitions[currPartitionIndex];
         if (!currPartition) {
