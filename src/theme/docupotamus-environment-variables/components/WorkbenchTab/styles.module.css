@@ -1,11 +1,11 @@
-.ul-container {
+.entries-container {
     list-style-type: none;
     margin: 0;
     padding: var(--space-2xs) var(--space-s);
     padding-bottom: 0;
 }
 
-.ul-container > li + li {
+.entries-container > li + li {
     margin-top: var(--space-s);
 }
 

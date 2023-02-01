@@ -74,7 +74,7 @@ export default function WorkbenchTab(): JSX.Element {
             >
                 Environment Variables
             </h3>
-            <ul className={styles['ul-container']}>
+            <ul className={styles['entries-container']}>
                 {entries.map((entry) => {
                     return (
                         <li key={`${KEY_PREFIX}-${entry.key}`}>
