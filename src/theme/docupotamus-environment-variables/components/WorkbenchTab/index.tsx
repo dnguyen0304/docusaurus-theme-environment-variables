@@ -87,10 +87,10 @@ export default function WorkbenchTab(): JSX.Element {
                                 //       entry.selector,
                                 //   )}
                                 //   onFocus={() => handleFocus(entry.selector)}
-                                //  required={entry.isRequired}
                                 value={''}
                                 variant='outlined'
                                 fullWidth
+                                required
                             />
                         </li>
                     );
