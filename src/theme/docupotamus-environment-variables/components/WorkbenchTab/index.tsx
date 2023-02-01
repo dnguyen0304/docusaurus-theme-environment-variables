@@ -15,6 +15,7 @@ const KEY_PREFIX = 'environmentVariable';
 interface Entry {
     readonly key: string;
     readonly defaultValue: string;
+    readonly currValue: string;
     readonly element: HTMLElement;
 };
 
@@ -35,27 +36,23 @@ export default function WorkbenchTab(): JSX.Element {
         }
     };
 
-    //     const handleBlur = (selector: string) => {
-    //         document.querySelector(selector)!.classList.remove('highlight');
-    //     };
+    const handleChange = (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+        changeIndex: number,
+        // selector: string,
+    ) => {
+        setEntries(entries => entries.map((entry, index) => {
+            if (index !== changeIndex) {
+                return entry;
+            }
+            return {
+                ...entry,
+                currValue: event.target.value,
+            };
+        }));
 
-    //     const handleChange = (
-    //         event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    //         changeIndex: number,
-    //         selector: string,
-    //     ) => {
-    //         setEntries(entries => entries.map((entry, index) => {
-    //             if (index !== changeIndex) {
-    //                 return entry;
-    //             }
-    //             return {
-    //                 ...entry,
-    //                 value: event.target.value,
-    //             }
-    //         }));
-
-    //         document.querySelector(selector)!.innerHTML = event.target.value + ' ';
-    //     };
+        // document.querySelector(selector)!.innerHTML = event.target.value + ' ';
+    };
 
     React.useEffect(() => {
         const newEntries: Entry[] = [];
@@ -74,6 +71,7 @@ export default function WorkbenchTab(): JSX.Element {
             newEntries.push({
                 key,
                 defaultValue,
+                currValue: defaultValue,
                 element,
             });
         });
@@ -94,22 +92,21 @@ export default function WorkbenchTab(): JSX.Element {
                 Environment Variables
             </h3>
             <ul className={styles['entries-container']}>
-                {entries.map((entry) => {
+                {entries.map((entry, index) => {
                     return (
                         <li key={`${KEY_PREFIX}-${entry.key}`}>
                             <TextField
                                 autoComplete='off'
                                 label={entry.key}
                                 onBlur={() => disableHighlight(entry)}
-                                //   onChange={event => handleChange(
-                                //       event,
-                                //       index,
-                                //       entry.selector,
-                                //   )}
+                                onChange={(event) => handleChange(
+                                    event,
+                                    index,
+                                )}
                                 onFocus={() => enableHighlight(entry)}
                                 onMouseEnter={() => enableHighlight(entry)}
                                 onMouseLeave={() => disableHighlight(entry)}
-                                value={''}
+                                value={entry.currValue}
                                 variant='outlined'
                                 fullWidth
                                 required
