@@ -3,25 +3,32 @@ import * as React from 'react';
 
 const REGEX = /\{\{\s\S+\s\}\}/g;
 
-const getPartitionIndices = (line: PrismToken[]): number[] => {
+interface Partition {
+    readonly start: number;
+    readonly end: number;
+};
+
+const getPartitions = (line: PrismToken[]): Partition[] => {
     const text = line.map(token => token.content).join('');
     const matches = [
         // See: https://github.com/microsoft/TypeScript/issues/36788
         ...text.matchAll(REGEX) as IterableIterator<RegExpExecArray>,
     ];
-    const indices: number[] = [];
+    const partitions: Partition[] = [];
     // if (matches[0].index !== 0) {
     //     // if (matches[0]?.index !== 0) {
-    //     indices.push(0);
+    //     partitions.push(0);
     // }
     matches.forEach(match => {
-        indices.push(match.index);
-        indices.push(match.index + match[0].length);
+        partitions.push({
+            start: match.index,
+            end: match.index + match[0].length,
+        });
     });
     // if (matches[matches.length - 1] !== text.length) {
-    //     indices.push(text.length);
+    //     partitions.push(text.length);
     // }
-    return indices;
+    return partitions;
 };
 
 // TODO(dnguyen0304): Investigate if importing from prism-react-renderer is
@@ -42,16 +49,21 @@ export default function PartitionedLines(
         getTokenProps,
     }: Props,
 ): JSX.Element {
-    const partitionIndices = getPartitionIndices(line);
+    const partitions = getPartitions(line);
     const lineTokens: JSX.Element[] = [];
+    const temp: PrismToken[] = [];
 
-    let characterIndex = 0;
-    let currPartitionIndex = partitionIndices[0];
+    let currCharacterIndex = 0;
+    let currPartition = partitions[0];
 
     line.forEach((token, key) => {
+        // if (currCharacterIndex === currPartitionIndex) {
+        //     temp.push(token);
+        //     return;
+        // }
         const lineToken = <span key={key} {...getTokenProps({ token, key })} />;
         lineTokens.push(lineToken);
-        characterIndex += token.content.length;
+        currCharacterIndex += token.content.length;
     });
 
     return (
