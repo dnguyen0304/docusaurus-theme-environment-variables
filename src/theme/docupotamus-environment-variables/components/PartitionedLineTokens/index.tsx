@@ -45,9 +45,13 @@ export default function PartitionedLines(
     const partitionIndices = getPartitionIndices(line);
     const lineTokens: JSX.Element[] = [];
 
+    let characterIndex = 0;
+    let currPartitionIndex = partitionIndices[0];
+
     line.forEach((token, key) => {
         const lineToken = <span key={key} {...getTokenProps({ token, key })} />;
         lineTokens.push(lineToken);
+        characterIndex += token.content.length;
     });
 
     return (
