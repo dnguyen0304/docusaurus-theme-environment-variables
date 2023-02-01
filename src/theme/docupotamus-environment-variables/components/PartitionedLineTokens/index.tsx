@@ -6,6 +6,7 @@ const REGEX = /\{\{\s\S+\s\}\}/g;
 interface Partition {
     readonly start: number;
     readonly end: number;
+    readonly name: string;
 };
 
 const getPartitions = (line: PrismToken[]): Partition[] => {
@@ -23,6 +24,7 @@ const getPartitions = (line: PrismToken[]): Partition[] => {
         partitions.push({
             start: match.index,
             end: match.index + match[0].length,
+            name: match[0].slice(3, -3),
         });
     });
     // if (matches[matches.length - 1] !== text.length) {
