@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import * as React from 'react';
 import { DATA_ATTRIBUTE, TARGET_CLASS_NAME } from '../PartitionedLineTokens';
 // import styles from './styles.module.css';
+import '../../styles.css';
 
 // const KEY_PREFIX = 'environmentVariable';
 
@@ -62,8 +63,18 @@ export default function WorkbenchTab(): JSX.Element {
 
     return (
         <Box>
-            {/* //             <h3>Environment Variables</h3>
-//             <ul
+            <h3
+                className='ifm_text__reset'
+                style={{
+                    color: 'var(--docupotamus-color-grey-800)',
+                    fontFamily: 'var(--docupotamus-font-family)',
+                    fontSize: 'var(--font-size-0)',
+                    fontWeight: 'var(--docupotamus-heading-font-weight)',
+                }}
+            >
+                Environment Variables
+            </h3>
+            {/* //             <ul
 //                 className={
 //                     `${styles['UnorderedList-container--unstyled']} `
 //                     + `${styles['Environment-unorderedList']}`
