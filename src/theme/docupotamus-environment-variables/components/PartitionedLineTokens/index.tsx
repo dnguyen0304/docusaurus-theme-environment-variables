@@ -16,10 +16,6 @@ const getPartitions = (line: PrismToken[]): Partition[] => {
         ...text.matchAll(REGEX) as IterableIterator<RegExpExecArray>,
     ];
     const partitions: Partition[] = [];
-    // if (matches[0].index !== 0) {
-    //     // if (matches[0]?.index !== 0) {
-    //     partitions.push(0);
-    // }
     matches.forEach(match => {
         partitions.push({
             start: match.index,
@@ -27,9 +23,6 @@ const getPartitions = (line: PrismToken[]): Partition[] => {
             name: match[0].slice(3, -3),
         });
     });
-    // if (matches[matches.length - 1] !== text.length) {
-    //     partitions.push(text.length);
-    // }
     return partitions;
 };
 
