@@ -2,7 +2,10 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import * as React from 'react';
 import '../../styles.css';
-import { DATA_ATTRIBUTE, TARGET_CLASS_NAME } from '../PartitionedLineTokens';
+import {
+    DATA_ATTRIBUTE_NAME,
+    TARGET_CLASS_NAME
+} from '../PartitionedLineTokens';
 import styles from './styles.module.css';
 
 const KEY_PREFIX = 'environmentVariable';
@@ -59,7 +62,7 @@ export default function WorkbenchTab(): JSX.Element {
             if (!(element instanceof HTMLElement)) {
                 return;
             }
-            const key = element.dataset[DATA_ATTRIBUTE];
+            const key = element.dataset[DATA_ATTRIBUTE_NAME];
             if (!key) {
                 return;
             }
