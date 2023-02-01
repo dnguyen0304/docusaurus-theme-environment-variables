@@ -28,18 +28,25 @@ export default function PartitionedLines(
         getTokenProps,
     }: Props,
 ): JSX.Element {
+    const chunks: JSX.Element[] = [];
+
+    tokens.forEach((line, i) => {
+        const chunk = (
+            <Line
+                key={i}
+                classNames={lineClassNames[i]}
+                line={line}
+                getLineProps={getLineProps}
+                getTokenProps={getTokenProps}
+                showLineNumbers={showLineNumbers}
+            />
+        );
+        chunks.push(chunk);
+    });
+
     return (
         <>
-            {tokens.map((line, i) => (
-                <Line
-                    key={i}
-                    classNames={lineClassNames[i]}
-                    line={line}
-                    getLineProps={getLineProps}
-                    getTokenProps={getTokenProps}
-                    showLineNumbers={showLineNumbers}
-                />
-            ))}
+            {chunks}
         </>
     );
 };
