@@ -13,7 +13,7 @@ const REGEX_SPLIT = /(\{\{\s\S+\s\}\})/g;
 interface Partition {
     readonly start: number;
     readonly end: number;
-    readonly name: string;
+    readonly key: string;
     readonly defaultValue: string;
 };
 
@@ -46,14 +46,14 @@ const getPartitions = (line: PrismToken[]): Partition[] => {
     matches.forEach(match => {
         const value = match[0].slice(3, -3);
         // TODO(dnguyen0304): Add validation.
-        const [name, defaultValue] =
+        const [key, defaultValue] =
             (value.includes('='))
                 ? value.split('=') as [string, string]
                 : [value, ''];
         partitions.push({
             start: match.index,
             end: match.index + match[0].length,
-            name,
+            key,
             defaultValue,
         });
     });
@@ -113,7 +113,7 @@ export default function PartitionedLines(
             lineTokens.push(
                 <span
                     className={TARGET_CLASS_NAME}
-                    data-environment-variable-name={currPartition.name}
+                    data-environment-variable-name={currPartition.key}
                 >
                     {temp}
                 </span>
