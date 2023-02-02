@@ -91,10 +91,10 @@ export default function WorkbenchTab(): JSX.Element {
                     fontFamily: 'var(--docupotamus-font-family)',
                     fontSize: 'var(--font-size-0)',
                     fontWeight: 'var(--docupotamus-heading-font-weight)',
-                    // textTransform: 'uppercase',
+                    textTransform: 'uppercase',
                 }}
             >
-                Environment Variables
+                environment variables
             </h3>
             <ul className={styles['entries-container']}>
                 {entries.map((entry, index) => {
