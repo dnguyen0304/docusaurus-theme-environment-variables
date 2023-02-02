@@ -11,7 +11,7 @@ import styles from './styles.module.css';
 
 const KEY_PREFIX = 'environmentVariable';
 
-// TODO(dnguyen0304): Support isRequired property.
+// TODO(dnguyen0304): Investigate adding isRequired.
 interface Entry {
     readonly key: string;
     readonly defaultValue: string;
@@ -91,6 +91,7 @@ export default function WorkbenchTab(): JSX.Element {
                     fontFamily: 'var(--docupotamus-font-family)',
                     fontSize: 'var(--font-size-0)',
                     fontWeight: 'var(--docupotamus-heading-font-weight)',
+                    // textTransform: 'uppercase',
                 }}
             >
                 Environment Variables
