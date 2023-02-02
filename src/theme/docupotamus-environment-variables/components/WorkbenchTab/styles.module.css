@@ -9,31 +9,11 @@
     margin-top: var(--space-s);
 }
 
+/* TODO(dnguyen0304): Extract to a centralized location to facilitate
+maintenance. */
 .target--highlight {
     background-color: rgb(252, 201, 53);
     border-radius: 6px;
+    /* TODO(dnguyen0304): Investigate if this legacy code is still needed. */
     padding: 1% 0;
 }
-
-/* 
-font-weight: var(--docupotamus-heading-font-weight);
-
-/*
-letterSpacing: '4px',
-lineHeight: '1.2',
-textAlign: 'center',
-textTransform: 'uppercase',
-
-.EnvironmentVariables-listItemButton {
-    color: red;
-    font-size: 1rem;
-}
-
-.EnvironmentVariables-buttonGroupContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 20px;
-} */
