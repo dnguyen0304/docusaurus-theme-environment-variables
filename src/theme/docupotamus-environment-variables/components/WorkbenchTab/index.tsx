@@ -36,6 +36,14 @@ export default function WorkbenchTab(): JSX.Element {
         }
     };
 
+    const handleFocus = (entry: Entry) => {
+        enableHighlight(entry);
+        entry.element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+        });
+    };
+
     const handleChange = (
         event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
         changeIndex: number,
@@ -84,6 +92,7 @@ export default function WorkbenchTab(): JSX.Element {
 
     return (
         <Box>
+            {/* TODO(dnguyen0304): Fix text styles convention. */}
             <h3
                 className='ifm_text__reset'
                 style={{
@@ -108,7 +117,7 @@ export default function WorkbenchTab(): JSX.Element {
                                     event,
                                     index,
                                 )}
-                                onFocus={() => enableHighlight(entry)}
+                                onFocus={() => handleFocus(entry)}
                                 onMouseEnter={() => enableHighlight(entry)}
                                 onMouseLeave={() => disableHighlight(entry)}
                                 value={entry.currValue}
