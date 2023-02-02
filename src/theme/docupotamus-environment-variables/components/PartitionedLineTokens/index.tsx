@@ -11,6 +11,14 @@ const REGEX = /\{\{\s\S+\s\}\}/g;
 // See: https://stackoverflow.com/a/25221523
 const REGEX_SPLIT = /(\{\{\s\S+\s\}\})/g;
 
+// TODO(dnguyen0304): Investigate if importing from prism-react-renderer is
+//   possible.
+interface PrismToken {
+    types: string[];
+    content: string;
+    empty?: boolean;
+};
+
 interface Partition {
     readonly start: number;
     readonly end: number;
@@ -59,14 +67,6 @@ const getPartitions = (line: PrismToken[]): Partition[] => {
         });
     });
     return partitions;
-};
-
-// TODO(dnguyen0304): Investigate if importing from prism-react-renderer is
-//   possible.
-interface PrismToken {
-    types: string[];
-    content: string;
-    empty?: boolean;
 };
 
 interface Props extends Pick<LineProps, 'getTokenProps'> {
