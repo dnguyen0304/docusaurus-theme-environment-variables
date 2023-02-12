@@ -11,17 +11,11 @@ declare module '@docusaurus/types' {
     }
 };
 
-const DEFAULT_THEME_CONFIG: EnvironmentVariablesThemeConfig = {
-    swizzleIsEnabled: true,
-};
+const DEFAULT_THEME_CONFIG: EnvironmentVariablesThemeConfig = {};
 
 // TODO(dnguyen0304): Investigate missing labels.
-// TODO(dnguyen0304): Fix incorrect ThemeConfig type.
 export const ThemeConfigSchema = Joi.object<ThemeConfig>({
     docupotamusEnvironmentVariables: Joi.object({
-        swizzleIsEnabled: Joi
-            .boolean()
-            .default(DEFAULT_THEME_CONFIG.swizzleIsEnabled),
     })
         .label('themeConfig.docupotamusEnvironmentVariables')
         .default(DEFAULT_THEME_CONFIG),

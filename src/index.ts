@@ -2,14 +2,14 @@ import type { Plugin } from '@docusaurus/types';
 
 export default function themeEnvironmentVariables(): Plugin<undefined> {
     return {
-        name: 'docusaurus-theme-environment-variables',
+        name: 'docupotamus-theme-environment-variables',
 
         getThemePath() {
-            return '../lib/theme';
+            return '../lib/theme/public';
         },
 
         getTypeScriptThemePath() {
-            return '../src/theme';
+            return '../src/theme/public';
         },
     };
 };

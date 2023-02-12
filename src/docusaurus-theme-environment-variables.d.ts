@@ -1,5 +1,8 @@
+declare module '@docupotamus/docusaurus-theme-command-menu' {
+    interface PluginOptions { }
+    interface EnvironmentVariablesThemeConfig { }
+}
+
 declare module '@docusaurus/theme-environment-variables' {
-    interface EnvironmentVariablesThemeConfig {
-        readonly swizzleIsEnabled: boolean;
-    }
+    export * from '@docupotamus/docusaurus-theme-command-menu';
 }
